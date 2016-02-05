@@ -3,7 +3,7 @@ title: |
   |  Angewandte Zuchtwertschätzung und 
   |  Angewandte statistische Methoden
 author: "Birgit Gredler und Peter von Rohr"
-date: "`r Sys.Date()`"
+date: "2016-02-04"
 output: 
   html_document:
     toc_float: true
@@ -18,11 +18,18 @@ __Willkommen__ auf der Webseite von
 - [751-7602-00L	Angewandte statistische Methoden in den Nutztierwissenschaften](https://www.lehrbetrieb.ethz.ch/edoz/kommLehrveranstaltungPre.do?i=1&j=0)
 
 ## Beschreibung
+Die Kursbeschreibung ist dem Vorlesungsverzeichnis entnommen.
+
+### Angewandte Zuchtwertschätzung für Nutztiere
+Die nationalen Zuchtwertschätzungen bei Rind, Schwein, Schaf und Ziege in der Schweiz werden anhand der verwendeten Methoden und Merkmalen erklärt. Zur Vertiefung werden fallweise Beispiele mit dem Statistikprogramm R berechnet.
+
+### Angewandte statistische Methoden in den Nutztierwissenschaften
+Die genomische Selektion ist in der Tierzucht die Methode der Wahl, das Leistungspotential der Selektionskandidaten zu verbessern. In dieser Vorlesung wird erklärt, weshalb Regressionen in der genomischen Selektion nicht verwendet werden können und was dann die Alternativen sind. Die vorgestellten Konzepte werden mit Übungen in R veranschaulicht.
 
 ## Information
-Dozierende: Birgit Gredler (BG) und Peter von Rohr (PvR)
-Datum: Montag 8-10
-Ort: [SOL A3](http://www.mapsearch.ethz.ch/map/map.do?gebaeudeMap=SOL&lang=en)
+- Dozierende: Birgit Gredler (BG) und Peter von Rohr (PvR)
+- Datum: Montag 8-10
+- Ort: [SOL A3](http://www.mapsearch.ethz.ch/map/map.do?gebaeudeMap=SOL&lang=en)
 
 ## Fragen
 Fragen können jederzeit während der Vorlesung und während der Übungsstunde oder via Email gestellt werden: 
@@ -33,13 +40,49 @@ Fragen können jederzeit während der Vorlesung und während der Übungsstunde o
 ## Material
 Die Folien zur Vorlesung, die Übungen und die Lösungen zu den Übungen können von dieser Webseite heruntergeladen werden. 
 
+
 ### Folien
+```{r SlidesTable, echo=FALSE, results='asis'}
+# define course start date
+dCourseStart <- as.Date("2016/02/22")
+# set number of weeks in semester
+nNrSemesterWeeks <- 15
+# define columns for weaks, dates, and subjects
+Woche <- 1:nNrSemesterWeeks
+Datum <- format(seq(dCourseStart, by = "week", length.out = nNrSemesterWeeks), "%d.%m")
+Thema <- vector(mode = "character", length = nNrSemesterWeeks)
+# set subject for special dates
+# easter monday
+sDateEasterMon <- format(as.Date("2016/03/28"), "%d.%m")
+nSubjEasterMondIdx <- which(Datum == sDateEasterMon)
+Thema[nSubjEasterMondIdx] <- "Ostermontag (frei)"
+# pentecote
+sDatePentMon <- format(as.Date("2016/05/16"), "%d.%m")
+nSubjPentMondIdx <- which(Datum == sDatePentMon)
+Thema[nSubjPentMondIdx] <- "Pfingstmontag (frei)"
+Wer <- c(rep("BG", floor(nNrSemesterWeeks/2)), rep("PvR", floor(nNrSemesterWeeks/2)), "BG/PvR")
+dfSlideTable <- data.frame(Woche, Datum, Thema, Wer, stringsAsFactors = FALSE)
+knitr::kable(dfSlideTable)
+```
+
 
 ### Übungen
+```{r ExerciseTable, echo=FALSE, results='asis'}
+dfExTable <- dfSlideTable
+knitr::kable(dfExTable)
+```
+
 
 ### Lösungen
+```{r SolutionTable, echo=FALSE, results='asis'}
+dfSolTable <- dfSlideTable
+dfSolTable$Thema[1] <- "Keine Übung"
+knitr::kable(dfSolTable)
+```
+
 
 ### Weiteres Material
 
+      
 ## Letzte Änderung
 _`r Sys.time()` (PvR)_
